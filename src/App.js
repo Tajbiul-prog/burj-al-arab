@@ -14,10 +14,15 @@ import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 export const userContext = createContext();
 
 function App() {
-  const [loggedInUser, setLoggedInUser] = useState({});
+  const [loggedInUser, setLoggedInUser] = useState({
+    name: '',
+    email: '',
+    photo: '',
+    password: '',
+    error: ''
+  });
   return (
     <userContext.Provider value={[loggedInUser, setLoggedInUser]}>
-      <p>Name: {loggedInUser.displayName}</p>
       <Router>
           <Header/>
           <Switch>
@@ -29,7 +34,7 @@ function App() {
             </Route>
             <PrivateRoute path="/book/:bedType">
               <Book />
-            </PrivateRoute>
+            </PrivateRoute >
             <Route exact path="/">
               <Home />
             </Route>
